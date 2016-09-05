@@ -1,8 +1,13 @@
 import random 
 
+# Create a dataset that has 0-37 options. 
+# 0 and 37 represents 0 and 00 in Roulette
+
 numbers = []
 for i in range(0,38):
     numbers.append(i)
+
+# This function playSingleDay simulates our Algorithm for one day
 
 def playSingleDay(numbers, plays=5,bet=10,spent=0,income=0,dice=0):
     max_fail = 0
@@ -23,7 +28,9 @@ def playSingleDay(numbers, plays=5,bet=10,spent=0,income=0,dice=0):
                 bet *= 3
     return spent, income, bet, max_fail
 
-def playMultiDays(max_days_limit=10, max_play_limit=365):
+# This function playMultiDay simulates our Algorithm for multiple days
+
+def playMultiDays(max_days_limit=10, max_play_limit=1000):
     grand_spent = 0
     grand_income = 0
     grand_profit = 0
@@ -42,10 +49,17 @@ def playMultiDays(max_days_limit=10, max_play_limit=365):
         grand_income += income
     grand_profit = grand_income - grand_spent
     percent = grand_profit * 100 / grand_spent
-    print "Grand Spent %d" %(grand_spent)
-    print "Grand Profit %d" %(grand_profit)
-    print "Profit percentage %d" %(percent)
-    print "Max Bet %d" %(max_bet)
-    print "Max number of fails %d on %d'th day" %(max_num_fails,max_fail_day)
+    print "Days Played %d" %(max_days_limit)
+    print "Max Games per Day %d" %(max_play_limit)
+    print "Total Spend %d" %(grand_spent)
+    print "Total Win %d" %(grand_income)
+    print "Total Profit %d" %(grand_profit)
+    print "Profit Percentage %d" %(percent)
+    print "Max Bet on a Day %d" %(max_bet)
+    print "Max Number of Fails: %d on %d'th day" %(max_num_fails,max_fail_day)
 
-playMultiDays(1,6)
+# First parameter: number of days that we wish to play
+# Second parameter: limit of games per day - defaulted to no-max (1000)
+
+playMultiDays(365,)
+
