@@ -1,0 +1,51 @@
+import random 
+
+numbers = []
+for i in range(0,38):
+    numbers.append(i)
+
+def playSingleDay(numbers, plays=5,bet=10,spent=0,income=0,dice=0):
+    max_fail = 0
+    for j in range(1,plays+1):
+        dice = random.choice(numbers)
+        if dice == numbers[0] or dice == numbers[-1]:
+            spent += bet
+            bet *= 3
+            max_fail += 1
+        elif dice % 2 == 0:
+            spent += bet
+            income += bet * 2
+            break
+        else:
+            spent += bet
+            max_fail += 1
+            if j != plays:
+                bet *= 3
+    return spent, income, bet, max_fail
+
+def playMultiDays(max_days_limit=10, max_play_limit=365):
+    grand_spent = 0
+    grand_income = 0
+    grand_profit = 0
+    percent = 0.00
+    max_bet = 0
+    max_num_fails = 0
+    max_fail_day = 0
+    for i in range(1,max_days_limit+1):
+        spent, income, bet, max_fail = playSingleDay(numbers,max_play_limit)
+        if max_bet < bet:
+            max_bet = bet
+        if max_num_fails < max_fail:
+            max_num_fails = max_fail
+            max_fail_day = i
+        grand_spent += spent
+        grand_income += income
+    grand_profit = grand_income - grand_spent
+    percent = grand_profit * 100 / grand_spent
+    print "Grand Spent %d" %(grand_spent)
+    print "Grand Profit %d" %(grand_profit)
+    print "Profit percentage %d" %(percent)
+    print "Max Bet %d" %(max_bet)
+    print "Max number of fails %d on %d'th day" %(max_num_fails,max_fail_day)
+
+playMultiDays(1,6)
