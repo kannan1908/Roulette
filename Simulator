@@ -7,7 +7,7 @@ numbers = []
 for i in range(0,38):
     numbers.append(i)
 
-#This function playSingleDay simulates our Algorithm for one day
+# This function playSingleDay simulates our Algorithm for one day
 
 def playSingleDay(numbers, plays=5,bet=10,spent=0,income=0,dice=0):
     max_fail = 0
@@ -32,7 +32,7 @@ def playSingleDay(numbers, plays=5,bet=10,spent=0,income=0,dice=0):
                 bet *= 3
     return spent, income, bet, max_fail
 
-#This function playMultiDay simulates our Algorithm for multiple days
+# This function playMultiDay simulates our Algorithm for multiple days
 
 def playMultiDays(max_days_limit=30, max_play_limit=1000):
     grand_spent = 0
@@ -61,8 +61,8 @@ def playMultiDays(max_days_limit=30, max_play_limit=1000):
     print "Max Games Played: %d on day %d" %(max_num_fails + 1,max_fail_day)
     print "Max Bet on a Day %d" %(max_bet)
 
-#First parameter: number of days that we wish to play - defaulted to 30
-#Second parameter: limit of games per day - defaulted to no-max (1000)
+# First parameter: number of days that we wish to play - defaulted to 30
+# Second parameter: limit of games per day - defaulted to no-max (1000)
 
 playMultiDays(365,)
 
